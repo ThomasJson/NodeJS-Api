@@ -7,20 +7,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      firstName: {
         type: DataTypes.STRING,
         allowNull: false,
-        // unique: {
-        //   msg: "Le nom de compte est déjà pris"
-        // },
         validate: {
           is: "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$",
           notNull: { msg: "Le nom de compte est une propriété requise." },
           notEmpty: { msg: "Le nom de compte ne doit pas être vide." },
-        }
-        // unique: {
-        //   msg: "Le nom de compte est déjà pris"
-        // },
+        },
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -29,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true,
           notNull: { msg: "L'email est une propriété requise." },
           notEmpty: { msg: "L'email ne doit pas être vide." },
-        }
+        },
       },
       password: {
         type: DataTypes.STRING,
@@ -38,7 +36,11 @@ module.exports = (sequelize, DataTypes) => {
           // is: "^[a-zA-Z]\w{3,14}$",
           notNull: { msg: "Le mot de passe est une propriété requise." },
           notEmpty: { msg: "Le mot de passe ne doit pas être vide." },
-        }
+        },
+      },
+      birthday: {
+        type: DataTypes.DATE,
+        allowNull: false,
       },
     },
 
