@@ -23,6 +23,13 @@ require("./src/routes/createAccount")(app);
 require("./src/routes/updateAccount")(app);
 require("./src/routes/deleteAccount")(app);
 
+// On ajoute la gestion des erreurs 404
+app.use(({ res }) => {
+  const message =
+    "Impossible de se connecter à la ressource demandée ! Vous pouvez essayer une autre URL.";
+  res.status(404).json({ message });
+});
+
 app.listen(port, () =>
   console.log(
     `Notre application Node est démarrée sur : http://localhost:${port}`

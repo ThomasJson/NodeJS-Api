@@ -2,7 +2,7 @@ const accounts = [
   {
     id: 1,
     name: "TomJson",
-    email: "TomJson@gamil.com",
+    email: "TomJson@gmail.com",
     password: "TomJson1",
     created: new Date(),
   },
