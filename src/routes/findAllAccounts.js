@@ -14,11 +14,11 @@ module.exports = (app) => {
       // Valeur indiquée dans l'URL ou 5 (valeur par défaut)
       const limitDefined = parseInt(req.query.limit) || 5;
 
-      if (name.length < 2) {
-        const message =
-          "Le terme de recherche doit contenir au moins 2 caractères.";
-        return res.status(400).json({ message });
-      }
+      // if (name.length < 2) {
+      //   const message =
+      //     "Le terme de recherche doit contenir au moins 2 caractères.";
+      //   return res.status(400).json({ message });
+      // }
 
       return Account.findAndCountAll({
         where: {
@@ -34,7 +34,7 @@ module.exports = (app) => {
         // ['name', 'ASC'] qui est la valeur par défaut
         limit: limitDefined,
       }).then(({ count, rows }) => {
-        const message = `Il y a ${count} comptes qui correspondent au terme de la recherche ${name}.`;
+        const message = `Il y a ${limitDefined} comptes qui correspondent au terme de la recherche ${name}.`;
         res.json({ message, data: rows });
       });
     }
