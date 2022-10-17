@@ -1,8 +1,9 @@
 const { Account } = require("../db/sequelize");
 const { ValidationError, UniqueConstraintError } = require("sequelize");
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.post("/api/accounts", (req, res) => {
+  app.post("/api/accounts", auth, (req, res) => {
     Account.create(req.body)
       .then((account) => {
         const message = `Le compte ${req.body.name} a bien été crée.`;

@@ -1,8 +1,8 @@
 const { Account } = require("../db/sequelize");
-// const auth = require('../auth/auth')
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.delete("/api/accounts/:id", (req, res) => {
+  app.delete("/api/accounts/:id", auth, (req, res) => {
     Account.findByPk(req.params.id)
       .then((account) => {
         if (account === null) {

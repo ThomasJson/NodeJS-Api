@@ -2,10 +2,11 @@ const { Account } = require("../db/sequelize");
 // On importe le modèle Pokemon, fourni par le module sequelize
 const { Op } = require("sequelize");
 // Un opérateur se déclare entre crochets
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
   // express nous permet d'ajouter un middleWare en deuxième argument d'une nouvelle route
-  app.get("/api/accounts", (req, res) => {
+  app.get("/api/accounts", auth, (req, res) => {
     // Paramètre de requête
     if (req.query.name) {
       // Permet d'indiquer à express que l'on souhaite

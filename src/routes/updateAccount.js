@@ -1,8 +1,9 @@
 const { Account } = require("../db/sequelize");
 const { ValidationError, UniqueConstraintError } = require("sequelize");
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.put("/api/accounts/:id", (req, res) => {
+  app.put("/api/accounts/:id", auth, (req, res) => {
     const id = req.params.id;
     // .update : méthode de sequelize
     Account.update(req.body, {
