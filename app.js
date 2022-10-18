@@ -1,6 +1,6 @@
 // http://localhost:3000/api/accounts
 
-// "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2NjAzMTU3NSwiZXhwIjoxNjY2MTE3OTc1fQ.qOwJ7u4uQqMkVjgBc82Q1Uq1PWmhhNCAIt4Rj9yY9ZQ"
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2NjAzMTU3NSwiZXhwIjoxNjY2MTE3OTc1fQ.qOwJ7u4uQqMkVjgBc82Q1Uq1PWmhhNCAIt4Rj9yY9ZQ
 
 const express = require("express");
 
@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const sequelize = require("./src/db/sequelize");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
@@ -15,9 +16,14 @@ const port = 3000;
 app
   .use(favicon(__dirname + "/favicon.ico"))
   .use(morgan("dev"))
-  .use(bodyParser.json());
+  .use(bodyParser.json())
+  .use(cors());
 
 sequelize.initDb();
+
+app.get('/', (req, res) =>{
+  res.json("Hello Boost !");
+})
 
 require("./src/routes/findAllAccounts")(app);
 require("./src/routes/findAccountByPk")(app);
