@@ -1,7 +1,5 @@
 // http://localhost:3000/api/accounts
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2NjAzMTU3NSwiZXhwIjoxNjY2MTE3OTc1fQ.qOwJ7u4uQqMkVjgBc82Q1Uq1PWmhhNCAIt4Rj9yY9ZQ
-
 const express = require("express");
 
 const morgan = require("morgan");
