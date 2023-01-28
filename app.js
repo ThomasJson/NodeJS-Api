@@ -1,12 +1,12 @@
 // http://localhost:3000/api/accounts
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2NzMwNzg3NSwiZXhwIjoxNjY3Mzk0Mjc1fQ.YHcA5sWQhlSGIPzZU8MMZcJ9Ud6ClmhtpZHh6DxF-Uc
 
 const express = require("express");
-
 const morgan = require("morgan");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
-const sequelize = require("./src/db/sequelize");
 const cors = require("cors");
+const sequelize = require("./src/db/sequelize");
 
 const app = express();
 const port = 3000;

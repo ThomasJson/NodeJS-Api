@@ -1,45 +1,24 @@
 const { Account } = require("../db/sequelize");
-// On importe le modèle Pokemon, fourni par le module sequelize
 const { Op } = require("sequelize");
-// Un opérateur se déclare entre crochets
-const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  // express nous permet d'ajouter un middleWare en deuxième argument d'une nouvelle route
-  app.get("/api/accounts", auth, (req, res) => {
-    // Paramètre de requête
-    if (req.query.name) {
-      // Permet d'indiquer à express que l'on souhaite
-      // extraire le paramètre de requête name, de l'URL
-      const name = req.query.name;
-      // Valeur indiquée dans l'URL ou 5 (valeur par défaut)
+  app.get("/api/accounts", (req, res) => {
+    if (req.query.firstName) {
+      const firstName = req.query.firstName;
       const limitDefined = parseInt(req.query.limit) || 5;
-
-      // if (name.length < 2) {
-      //   const message =
-      //     "Le terme de recherche doit contenir au moins 2 caractères.";
-      //   return res.status(400).json({ message });
-      // }
-
       return Account.findAndCountAll({
         where: {
-          name: {
-            // name est la propriété du modèle pokémon
-            [Op.like]: `%${name}%`, // name est le critère de la recherche
+          firstName: {
+            [Op.like]: `%${firstName}%`,
           },
-          // limit est donc une propriété de la méthode findAll
-          // 5 résultats
         },
-        order: ["name"],
-        // ['name'] est un raccourci de language pour dire
-        // ['name', 'ASC'] qui est la valeur par défaut
+        order: ["firstName"],
         limit: limitDefined,
       }).then(({ count, rows }) => {
-        const message = `Il y a ${limitDefined} comptes qui correspondent au terme de la recherche ${name}.`;
+        const message = `Il y a ${limitDefined} comptes qui correspondent au terme de la recherche ${firstName}.`;
         res.json({ message, data: rows });
       });
     }
-
     // else {}
     Account.findAll({ order: ["id"] })
       .then((accounts) => {
