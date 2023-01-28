@@ -1,9 +1,7 @@
 const { Account } = require("../db/sequelize");
-const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.get("/api/accounts/:id", auth, (req, res) => {
-    // Paramètre d'URL
+  app.get("/api/accounts/:id", (req, res) => {
     Account.findByPk(req.params.id)
       .then((account) => {
         if(account === null) {

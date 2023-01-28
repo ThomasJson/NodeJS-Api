@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          // is: "^[a-zA-Z]\w{3,14}$",
           notNull: { msg: "Le mot de passe est une propriété requise." },
           notEmpty: { msg: "Le mot de passe ne doit pas être vide." },
         },

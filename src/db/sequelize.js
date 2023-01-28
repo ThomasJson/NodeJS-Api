@@ -13,8 +13,8 @@ const sequelize = new Sequelize("boost", "root", "", {
   logging: false,
 });
 
-const Account = AccountModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
+const Account = AccountModel(sequelize, DataTypes);
 
 const initDb = () => {
   return sequelize.sync({ force: true }).then((_) => {
@@ -27,7 +27,6 @@ const initDb = () => {
         birthday: account.birthday,
       });
     });
-
     bcrypt
       .hash("pikachu", 10)
       // .hash prend 2 params: mp, nb Entier(temps pour hasher un mp)
@@ -40,6 +39,6 @@ const initDb = () => {
 
 module.exports = {
   initDb,
-  Account,
   User,
+  Account,
 };

@@ -18,7 +18,7 @@ module.exports = (app) => {
             const message = `Le compte demandé n'existe pas. Réessayez avec un autre identifiant.`;
             return res.status(404).json({ message });
           }
-          const message = `Le compte ${account.name} a bien été modifié.`;
+          const message = `Le compte ${account.firstName} a bien été modifié.`;
           res.json({ message, data: account });
         });
       })
